@@ -51,6 +51,48 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BPD-99-UMl">
                                 <rect key="frame" x="0.0" y="114" width="375" height="553"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArtistCell" rowHeight="42" id="1zE-kg-t2G" customClass="ArtistTableViewCell" customModule="itunesAPIVIPER" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="42"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1zE-kg-t2G" id="MPb-Yo-ocq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeF-El-iyN">
+                                                    <rect key="frame" x="8" y="0.0" width="359" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="Ppe-MF-qqa"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xee-j5-pKo">
+                                                    <rect key="frame" x="8" y="18" width="359" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="MRz-wK-RTg"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="PeF-El-iyN" secondAttribute="trailing" constant="8" id="8vf-8k-2wE"/>
+                                                <constraint firstItem="Xee-j5-pKo" firstAttribute="top" secondItem="MPb-Yo-ocq" secondAttribute="top" constant="18" id="Ayc-Sr-xIa"/>
+                                                <constraint firstItem="Xee-j5-pKo" firstAttribute="leading" secondItem="MPb-Yo-ocq" secondAttribute="leading" constant="8" id="YIR-XP-DFV"/>
+                                                <constraint firstItem="PeF-El-iyN" firstAttribute="leading" secondItem="MPb-Yo-ocq" secondAttribute="leading" constant="8" id="dTd-al-AeL"/>
+                                                <constraint firstItem="PeF-El-iyN" firstAttribute="top" secondItem="MPb-Yo-ocq" secondAttribute="top" id="rHt-fg-StX"/>
+                                                <constraint firstAttribute="trailing" secondItem="Xee-j5-pKo" secondAttribute="trailing" constant="8" id="sDc-KA-AUU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="artistNameLabel" destination="PeF-El-iyN" id="zyH-jN-wfK"/>
+                                            <outlet property="genreLabel" destination="Xee-j5-pKo" id="K9c-Gf-o6t"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
