@@ -13,6 +13,17 @@ class ArtistListView: UIViewController {
     var presenter: ArtistListPresenterProtocol?
     
     
+    @IBOutlet var searchTextField: UITextField!
+    @IBOutlet var tableView: UITableView!
+    
+    
+    
+    @IBAction func searchArtistAction(_ sender: Any) {
+        if let searchText = self.searchTextField.text {
+             presenter?.retrieveArtistList(forSearchTerm: searchText)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
