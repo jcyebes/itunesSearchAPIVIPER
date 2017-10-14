@@ -117,6 +117,21 @@
             </objects>
             <point key="canvasLocation" x="476" y="133.5832083958021"/>
         </scene>
+        <!--Discography List View-->
+        <scene sceneID="qF6-Ak-HuC">
+            <objects>
+                <viewController id="5ww-pY-xUN" customClass="DiscographyListView" customModule="itunesAPIVIPER" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KzR-Pw-ppV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="G0b-z2-Bf8"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lwe-g9-mjc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1289" y="134"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="O6c-Zl-eds">
             <objects>

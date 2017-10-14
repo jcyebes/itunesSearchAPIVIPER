@@ -14,3 +14,9 @@ struct ResponseModel: Decodable {
     let resultCount:Int
     let results:[ArtistModel]
 }
+
+/// TODO: Maybe use generics to create a generic response struct
+struct DiscographyResponseModel: Decodable {
+    let resultCount:Int
+    let results:[DiscographyItemModel]
+}
