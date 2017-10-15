@@ -12,27 +12,27 @@ class DiscographyRemoteDataManager: DiscographyListRemoteDataManagerInputProtoco
 
     var requestHandler: DiscographyListRemoteDataManagerOutputProtocol?
     
-    func retrieveDiscographyList(forArtistId artistId:Int) {
+    func retrieveDiscographyList(forArtistId artistId:Int, limit numberOfItems: Int?) {
         
-        let url = URL(string: self.getDiscographyQuery(artistId: artistId));
+        let url = URL(string: self.getDiscographyQuery(artistId: artistId, limit: numberOfItems))
         
         let downloadTask = URLSession.shared.dataTask(with: url!) {(data, response, error) in
             
             guard error == nil else {
                 print("There were an error retrieving data")
-                self.requestHandler?.onError()
+                self.requestHandler?.onDiscographyError()
                 return
             }
             
             guard let responseData = data else {
                 print("No data in response")
-                self.requestHandler?.onError()
+                self.requestHandler?.onDiscographyError()
                 return
             }
             
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
-
+            
             do {
                 let discResponseModel = try decoder.decode(DiscographyResponseModel.self, from: responseData)
                 var cleanResults:[DiscographyItemModel] = discResponseModel.results
@@ -42,19 +42,24 @@ class DiscographyRemoteDataManager: DiscographyListRemoteDataManagerInputProtoco
             } catch {
                 print("error trying to convert data")
                 print(error)
-                self.requestHandler?.onError()
+                self.requestHandler?.onDiscographyError()
             }
         }
         
         downloadTask.resume()
+        
     }
     
     
     /// Private
-    private func getDiscographyQuery(artistId:Int) -> String {
+    private func getDiscographyQuery(artistId:Int, limit:Int?) -> String {
         
         // TODO: Put host URL and paths in a global structure
-        return "https://itunes.apple.com/lookup?id=\(artistId)&entity=album"
+        var urlString = "https://itunes.apple.com/lookup?id=\(artistId)&entity=album"
+        if let itemLimit = limit {
+            urlString = "https://itunes.apple.com/lookup?id=\(artistId)&entity=album&limit=\(itemLimit)"
+        }
+        return urlString
     }
     
 }

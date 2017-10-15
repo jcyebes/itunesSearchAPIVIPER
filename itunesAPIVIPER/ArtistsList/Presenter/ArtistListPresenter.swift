@@ -36,6 +36,10 @@ extension ArtistListPresenter: ArtistListInteractorOutputProtocol {
         view?.showArtists(with: artists)
     }
     
+    func didRetrieveDiscography(_ discography: [DiscographyItemModel]) {
+        view?.updateArtist(with: discography)
+    }
+    
     func onError() {
             view?.hideLoading()
             view?.showError()

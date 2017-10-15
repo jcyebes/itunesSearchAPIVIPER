@@ -17,8 +17,9 @@ class ArtistListWireFrame: ArtistListWireFrameProtocol {
             
             // Get components
             let presenter: ArtistListPresenterProtocol & ArtistListInteractorOutputProtocol = ArtistListPresenter()
-            let interactor: ArtistListInteractorInputProtocol & ArtistListRemoteDataManagerOutputProtocol = ArtistListInteractor()
-            let remoteDataManager: ArtistListRemoteDataManagerInputProtocol = ArtistRemoteDataManager()
+            let interactor: ArtistListInteractorInputProtocol & ArtistListRemoteDataManagerOutputProtocol & DiscographyListRemoteDataManagerOutputProtocol = ArtistListInteractor()
+            let artistRemoteDataManager: ArtistListRemoteDataManagerInputProtocol = ArtistRemoteDataManager()
+            let discographyRemoteDataManager: DiscographyListRemoteDataManagerInputProtocol = DiscographyRemoteDataManager()
             let wireFrame: ArtistListWireFrameProtocol = ArtistListWireFrame()
             
             // Inyect the VIPER Stack
@@ -27,8 +28,10 @@ class ArtistListWireFrame: ArtistListWireFrameProtocol {
             presenter.wireFrame = wireFrame
             presenter.interactor = interactor
             interactor.presenter = presenter
-            interactor.remoteDataManager = remoteDataManager
-            remoteDataManager.requestHandler = interactor
+            interactor.artistRemoteDataManager = artistRemoteDataManager
+            interactor.discRemoteDataManager = discographyRemoteDataManager
+            artistRemoteDataManager.requestHandler = interactor
+            discographyRemoteDataManager.requestHandler = interactor
             
             return navController
         }

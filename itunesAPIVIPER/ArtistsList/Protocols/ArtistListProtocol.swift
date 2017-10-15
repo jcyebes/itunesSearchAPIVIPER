@@ -14,7 +14,9 @@ import UIKit
 protocol ArtistListViewProtocol: class {
     var presenter: ArtistListPresenterProtocol? { get set }
     
-    func showArtists(with Artists: [ArtistModel])
+    func showArtists(with artists: [ArtistModel])
+    
+    func updateArtist(with discography: [DiscographyItemModel])
     
     func showError()
     
@@ -44,6 +46,7 @@ protocol ArtistListPresenterProtocol: class {
 protocol ArtistListInteractorOutputProtocol: class {
 
     func didRetrieveArtists(_ artists: [ArtistModel])
+    func didRetrieveDiscography(_ discography: [DiscographyItemModel])
     func onError()
 }
 
@@ -52,7 +55,8 @@ protocol ArtistListInteractorOutputProtocol: class {
 // MARK:  Presenter -> Interactor
 protocol ArtistListInteractorInputProtocol: class {
     var presenter: ArtistListInteractorOutputProtocol? { get set }
-    var remoteDataManager: ArtistListRemoteDataManagerInputProtocol? { get set }
+    var artistRemoteDataManager: ArtistListRemoteDataManagerInputProtocol? { get set }
+    var discRemoteDataManager: DiscographyListRemoteDataManagerInputProtocol? { get set }
     
     func retrieveArtistList(forSearchTerm searchTerm:String)
 }
@@ -73,7 +77,7 @@ protocol ArtistListRemoteDataManagerInputProtocol: class {
 protocol ArtistListRemoteDataManagerOutputProtocol: class {
     
     func onArtistsRetrieved(_ artists: [ArtistModel])
-    func onError()
+    func onArtistError()
 }
 
 

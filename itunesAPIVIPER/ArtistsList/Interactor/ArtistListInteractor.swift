@@ -11,10 +11,11 @@ import UIKit
 class ArtistListInteractor: ArtistListInteractorInputProtocol {
     
     weak var presenter: ArtistListInteractorOutputProtocol?
-    var remoteDataManager: ArtistListRemoteDataManagerInputProtocol?
+    var artistRemoteDataManager: ArtistListRemoteDataManagerInputProtocol?
+    var discRemoteDataManager: DiscographyListRemoteDataManagerInputProtocol?
     
     func retrieveArtistList(forSearchTerm searchTerm:String) {
-        remoteDataManager?.retrieveArtistList(forSearchTerm: searchTerm)
+        artistRemoteDataManager?.retrieveArtistList(forSearchTerm: searchTerm)
     }
     
 }
@@ -24,12 +25,32 @@ class ArtistListInteractor: ArtistListInteractorInputProtocol {
 extension ArtistListInteractor: ArtistListRemoteDataManagerOutputProtocol {
     
     func onArtistsRetrieved(_ artists: [ArtistModel]) {
+        
+        // Update UI, while discography response is retrieved
         presenter?.didRetrieveArtists(artists)
+        
+        // Get partial discography for each artist
+        for artist in artists {
+           discRemoteDataManager?.retrieveDiscographyList(forArtistId: artist.artistId, limit: 2)
+        }
     }
     
     
-    func onError() {
+    func onArtistError() {
         presenter?.onError()
+    }
+    
+}
+
+
+extension ArtistListInteractor: DiscographyListRemoteDataManagerOutputProtocol {
+    
+    func onDiscographyRetrieved(_ discography: [DiscographyItemModel]) {
+        // Update artists with retrieved discography
+        presenter?.didRetrieveDiscography(discography)
+    }
+    
+    func onDiscographyError() {
     }
     
 }

@@ -19,13 +19,13 @@ class ArtistRemoteDataManager: ArtistListRemoteDataManagerInputProtocol {
             
             guard error == nil else {
                 print("There were an error retrieving data")
-                self.requestHandler?.onError()
+                self.requestHandler?.onArtistError()
                 return
             }
             
             guard let responseData = data else {
                 print("No data in response")
-                self.requestHandler?.onError()
+                self.requestHandler?.onArtistError()
                 return
             }
             
@@ -37,7 +37,7 @@ class ArtistRemoteDataManager: ArtistListRemoteDataManagerInputProtocol {
             } catch {
                 print("error trying to convert data to JSON")
                 print(error)
-                self.requestHandler?.onError()
+                self.requestHandler?.onArtistError()
             }
         }
         

@@ -93,6 +93,53 @@
                                             <outlet property="genreLabel" destination="Xee-j5-pKo" id="K9c-Gf-o6t"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DiscographyCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="DiscographyCell" rowHeight="120" id="B5Y-t2-jbg" customClass="DiscographyTableViewCell" customModule="itunesAPIVIPER" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="88" width="375" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B5Y-t2-jbg" id="m8z-gP-ksX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="album" translatesAutoresizingMaskIntoConstraints="NO" id="Ump-ll-HdB">
+                                                    <rect key="frame" x="8" y="8" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="MMH-q3-T4W"/>
+                                                        <constraint firstAttribute="width" constant="100" id="zeq-eG-Ooc"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Il4-oy-uJy">
+                                                    <rect key="frame" x="116" y="16" width="243" height="70.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9f-QQ-c1B">
+                                                    <rect key="frame" x="116" y="94.5" width="40" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="knH-2p-hig"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Il4-oy-uJy" secondAttribute="trailing" constant="8" id="2VE-te-5Yf"/>
+                                                <constraint firstItem="Ump-ll-HdB" firstAttribute="leading" secondItem="m8z-gP-ksX" secondAttribute="leading" constant="8" id="AxC-Ll-OaQ"/>
+                                                <constraint firstItem="Il4-oy-uJy" firstAttribute="leading" secondItem="Ump-ll-HdB" secondAttribute="trailing" constant="8" id="Ok0-cG-xfj"/>
+                                                <constraint firstItem="v9f-QQ-c1B" firstAttribute="top" secondItem="Il4-oy-uJy" secondAttribute="bottom" constant="8" id="QI3-fe-8Yz"/>
+                                                <constraint firstItem="Il4-oy-uJy" firstAttribute="top" secondItem="m8z-gP-ksX" secondAttribute="topMargin" constant="8" id="RZb-fZ-R4K"/>
+                                                <constraint firstItem="v9f-QQ-c1B" firstAttribute="leading" secondItem="Ump-ll-HdB" secondAttribute="trailing" constant="8" id="UdD-w9-dXJ"/>
+                                                <constraint firstItem="v9f-QQ-c1B" firstAttribute="baseline" secondItem="Ump-ll-HdB" secondAttribute="baseline" id="hZr-iB-cer"/>
+                                                <constraint firstItem="Ump-ll-HdB" firstAttribute="top" secondItem="m8z-gP-ksX" secondAttribute="top" constant="8" id="yXj-gG-KLl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="albumImage" destination="Ump-ll-HdB" id="Xth-DJ-1F0"/>
+                                            <outlet property="albumTitleLabel" destination="Il4-oy-uJy" id="8YM-Up-okB"/>
+                                            <outlet property="albumYearLabel" destination="v9f-QQ-c1B" id="v9q-1J-LoK"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>

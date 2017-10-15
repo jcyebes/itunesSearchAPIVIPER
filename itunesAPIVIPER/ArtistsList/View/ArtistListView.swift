@@ -44,6 +44,20 @@ extension ArtistListView: ArtistListViewProtocol {
         }
     }
     
+    func updateArtist(with discography: [DiscographyItemModel]) {
+        
+        // Update artists
+        let discArtistId = discography.first?.artistId
+        if let artistOffset = artistList.index(where: { $0.artistId == discArtistId}) {
+           artistList[artistOffset].discography = discography
+        }
+        
+        // Reload table
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     func showError() {
         
     }
@@ -61,27 +75,66 @@ extension ArtistListView: ArtistListViewProtocol {
 // MARK: TableView delegate
 extension ArtistListView: UITableViewDataSource, UITableViewDelegate {
     
+    // Artist Sections
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.artistList.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // Use a cell view as header
+        let artistHeader = tableView.dequeueReusableCell(withIdentifier: "ArtistCell") as! ArtistTableViewCell
+        
+        let artist = self.artistList[section]
+        artistHeader.set(artistData: artist)
+        
+        return artistHeader
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return 60.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        // Create a dummy View
+        let vw = UIView()
+        vw.backgroundColor = UIColor.green
+        
+        return vw
+    }
+    
+    // Discography cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ArtistCell", for: indexPath) as! ArtistTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DiscographyCell", for: indexPath) as! DiscographyTableViewCell
         
-        let artist = self.artistList[indexPath.row]
-        cell.set(artistData: artist)
+        let discographyItem = self.artistList[indexPath.section].discography![indexPath.row]
+        cell.set(discographyItemData: discographyItem)
+        
         
         return cell
     }
     
+    // Discography cells
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
+        return 120.0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.artistList.count
+        
+        if let partialDiscography = self.artistList[section].discography {
+            return partialDiscography.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let artist = self.artistList[indexPath.row]
         presenter?.showArtistDiscography(forArtist: artist)
     }
+    
+    
+    
 }
 

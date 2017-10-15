@@ -14,20 +14,19 @@ class DiscographyListInteractor: DiscographyListInteractorInputProtocol {
     var remoteDataManager: DiscographyListRemoteDataManagerInputProtocol?
     
     func retrieveDiscographyList(forArtistId artistId:Int) {
-        self.remoteDataManager?.retrieveDiscographyList(forArtistId: artistId)
+        self.remoteDataManager?.retrieveDiscographyList(forArtistId: artistId, limit: nil)
     }
     
 }
 
 
 extension DiscographyListInteractor: DiscographyListRemoteDataManagerOutputProtocol {
-    
+
     func onDiscographyRetrieved(_ discography: [DiscographyItemModel]) {
            presenter?.didRetrieveDiscography(discography)
     }
     
-    func onError() {
+    func onDiscographyError() {
         presenter?.onError()
     }
-    
 }

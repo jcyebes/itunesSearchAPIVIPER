@@ -60,12 +60,12 @@ protocol DiscographyListDataManagerInputProtocol: class {
 protocol DiscographyListRemoteDataManagerInputProtocol: class {
     var requestHandler: DiscographyListRemoteDataManagerOutputProtocol? { get set }
     
-    func retrieveDiscographyList(forArtistId artistId:Int)
+    func retrieveDiscographyList(forArtistId artistId:Int, limit numberOfItems: Int?)
 }
 
 // MARK:  RemoteDatamanager -> Interactor
 protocol DiscographyListRemoteDataManagerOutputProtocol: class {
     
     func onDiscographyRetrieved(_ discography: [DiscographyItemModel])
-    func onError()
+    func onDiscographyError()
 }
