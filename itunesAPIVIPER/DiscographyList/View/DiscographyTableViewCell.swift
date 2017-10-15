@@ -21,6 +21,8 @@ class DiscographyTableViewCell: UITableViewCell {
         let year = calendar.component(.year, from: itemData.releaseDate!)
         
         self.albumYearLabel.text = String(year)
+        
+        self.albumImage.imageFromServerURL(url: itemData.coverImageUrl!)
     }
     
 }
