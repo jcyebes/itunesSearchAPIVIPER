@@ -37,7 +37,11 @@ class ArtistListWireFrame: ArtistListWireFrameProtocol {
     
     // MARK: Navigation
     func presentDiscographyScreen(from view: ArtistListViewProtocol, forArtist artist: ArtistModel) {
-        
+        let discographyViewController = DiscographyListWireFrame.createDiscographyListModule(for: artist)
+            
+        if let sourceView = view as? UIViewController {
+            sourceView.navigationController?.pushViewController(discographyViewController, animated: true)
+        }
     }
     
     // MARK: Private

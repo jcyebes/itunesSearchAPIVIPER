@@ -23,8 +23,8 @@ class ArtistListPresenter: ArtistListPresenterProtocol {
         interactor?.retrieveArtistList(forSearchTerm: searchTerm)
     }
     
-    func showArtistDetail(forArtist artist: ArtistModel) {
-        
+    func showArtistDiscography(forArtist artist: ArtistModel) {
+        wireFrame?.presentDiscographyScreen(from: view!, forArtist: artist)
     }
 }
 

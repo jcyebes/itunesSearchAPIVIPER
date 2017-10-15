@@ -75,5 +75,10 @@ extension ArtistListView: UITableViewDataSource, UITableViewDelegate {
         return self.artistList.count
     }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let artist = self.artistList[indexPath.row]
+        presenter?.showArtistDiscography(forArtist: artist)
+    }
+    
 }
 

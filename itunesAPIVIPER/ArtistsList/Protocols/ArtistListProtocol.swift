@@ -37,7 +37,7 @@ protocol ArtistListPresenterProtocol: class {
     
     func viewDidLoad()
     func retrieveArtistList(forSearchTerm searchTerm:String)
-    func showArtistDetail(forArtist artist: ArtistModel)
+    func showArtistDiscography(forArtist artist: ArtistModel)
 }
 
 // MARK:  Interactor -> Presenter
