@@ -12,7 +12,7 @@ class DiscographyRemoteDataManager: DiscographyListRemoteDataManagerInputProtoco
 
     var requestHandler: DiscographyListRemoteDataManagerOutputProtocol?
     
-    func retrieveDiscographyList(forArtistId artistId:String) {
+    func retrieveDiscographyList(forArtistId artistId:Int) {
         
         let url = URL(string: self.getDiscographyQuery(artistId: artistId));
         
@@ -31,10 +31,14 @@ class DiscographyRemoteDataManager: DiscographyListRemoteDataManagerInputProtoco
             }
             
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+
             do {
                 let discResponseModel = try decoder.decode(DiscographyResponseModel.self, from: responseData)
-                dump(discResponseModel)
-                self.requestHandler?.onDiscographyRetrieved(discResponseModel.results)
+                var cleanResults:[DiscographyItemModel] = discResponseModel.results
+                cleanResults.removeFirst()
+                
+                self.requestHandler?.onDiscographyRetrieved(cleanResults)
             } catch {
                 print("error trying to convert data")
                 print(error)
@@ -43,13 +47,11 @@ class DiscographyRemoteDataManager: DiscographyListRemoteDataManagerInputProtoco
         }
         
         downloadTask.resume()
-        
-        
     }
     
     
     /// Private
-    private func getDiscographyQuery(artistId:String) -> String {
+    private func getDiscographyQuery(artistId:Int) -> String {
         
         // TODO: Put host URL and paths in a global structure
         return "https://itunes.apple.com/lookup?id=\(artistId)&entity=album"

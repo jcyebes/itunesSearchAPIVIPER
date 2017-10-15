@@ -8,28 +8,36 @@
 
 import UIKit
 
-struct DiscographyItemModel: Codable {
+
+struct DiscographyItemModel: Decodable {
     
-    var coverImageUrl: URL
-    var title: String
-    var year: String
-    
-    // implement codable
-    init?(json: [String: Any]) {
-        guard let coverImageUrlString = json["artworkUrl60"] as? String,
-            let title = json["collectionName"] as? String,
-            let releaseDate = json["primaryGenreName"] as? Date
-            else {
-                return nil
-        }
-        
-        self.coverImageUrl = URL(string: coverImageUrlString)!
-        self.title = title
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM"
-        let releaseYear = dateFormatter.string(from: releaseDate)
-        self.year = releaseYear
+    enum discographyKeys: String, CodingKey {
+        case artworkUrl100 = "artworkUrl100"
+        case collectionName = "collectionName"
+        case releaseDate = "releaseDate"
+        case wrapperType = "wrapperType"
     }
     
+    var coverImageUrl: URL?
+    var title: String?
+    var releaseDate: Date?
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: discographyKeys.self)
+        
+        let wrapperType: String = try container.decode(String.self, forKey: .wrapperType)
+        if wrapperType == "collection" {
+            let coverImageUrl: URL = try container.decode(URL.self, forKey: .artworkUrl100)
+            let titleString: String = try container.decode(String.self, forKey: .collectionName)
+            let releaseDate: Date = try container.decode(Date.self, forKey: .releaseDate)
+                
+            self.coverImageUrl = coverImageUrl
+            self.title = titleString
+            self.releaseDate = releaseDate
+        } else {
+                self.coverImageUrl = nil
+                self.title = nil
+                self.releaseDate = nil
+        }
+    }
 }

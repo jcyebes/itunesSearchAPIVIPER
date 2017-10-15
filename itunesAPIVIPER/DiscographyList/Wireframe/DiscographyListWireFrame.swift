@@ -23,6 +23,7 @@ class DiscographyListWireFrame: DiscographyListWireFrameProtocol {
             
             // Inyect the VIPER Stack
             view.presenter = presenter
+            presenter.artist = artist
             presenter.view = view
             presenter.wireFrame = wireFrame
             presenter.interactor = interactor

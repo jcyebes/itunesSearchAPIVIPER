@@ -28,6 +28,7 @@
 		B7A4C49A1F92866D002AB736 /* DiscographyListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A4C4991F92866D002AB736 /* DiscographyListPresenter.swift */; };
 		B7A4C49C1F92868D002AB736 /* DiscographyListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A4C49B1F92868D002AB736 /* DiscographyListInteractor.swift */; };
 		B7A4C49E1F9286B1002AB736 /* DiscographyRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A4C49D1F9286B1002AB736 /* DiscographyRemoteDataManager.swift */; };
+		B7A4C4A01F937C7B002AB736 /* DiscographyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A4C49F1F937C7A002AB736 /* DiscographyTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		B7A4C4991F92866D002AB736 /* DiscographyListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscographyListPresenter.swift; sourceTree = "<group>"; };
 		B7A4C49B1F92868D002AB736 /* DiscographyListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscographyListInteractor.swift; sourceTree = "<group>"; };
 		B7A4C49D1F9286B1002AB736 /* DiscographyRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscographyRemoteDataManager.swift; sourceTree = "<group>"; };
+		B7A4C49F1F937C7A002AB736 /* DiscographyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscographyTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				B71B9DBE1F92840300B8F7EF /* DiscographyListView.swift */,
+				B7A4C49F1F937C7A002AB736 /* DiscographyTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				B7593E9B1F9231A6000C852E /* ArtistListPresenter.swift in Sources */,
 				B7A4C49E1F9286B1002AB736 /* DiscographyRemoteDataManager.swift in Sources */,
 				B7593E921F9222D4000C852E /* ResponseModel.swift in Sources */,
+				B7A4C4A01F937C7B002AB736 /* DiscographyTableViewCell.swift in Sources */,
 				B7593E901F922299000C852E /* DiscographyItemModel.swift in Sources */,
 				B71B9DBF1F92840300B8F7EF /* DiscographyListView.swift in Sources */,
 				B7A4C49C1F92868D002AB736 /* DiscographyListInteractor.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ArtistModel: Codable {
+struct ArtistModel: Decodable {
     let artistId: Int
     let artistName:String
     let primaryGenreName:String?

@@ -13,7 +13,7 @@ class DiscographyListInteractor: DiscographyListInteractorInputProtocol {
     var presenter: DiscographyListInteractorOutputProtocol?
     var remoteDataManager: DiscographyListRemoteDataManagerInputProtocol?
     
-    func retrieveDiscographyList(forArtistId artistId:String) {
+    func retrieveDiscographyList(forArtistId artistId:Int) {
         self.remoteDataManager?.retrieveDiscographyList(forArtistId: artistId)
     }
     

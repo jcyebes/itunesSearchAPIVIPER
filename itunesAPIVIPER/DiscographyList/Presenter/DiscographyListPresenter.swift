@@ -14,12 +14,15 @@ class DiscographyListPresenter: DiscographyListPresenterProtocol {
     var interactor: DiscographyListInteractorInputProtocol?
     var wireFrame: DiscographyListWireFrameProtocol?
     
+    var artist: ArtistModel?
+    
     func viewDidLoad() {
         view?.showLoading()
-    }
-    
-    func retrieveDiscographyList(forArtistId artistId:String) {
-        interactor?.retrieveDiscographyList(forArtistId: artistId)
+        
+        if let artistToLoad = self.artist {
+             print ("Trying to show discography for artist \(artistToLoad.artistName)")
+             interactor?.retrieveDiscographyList(forArtistId: artistToLoad.artistId)
+        }
     }
     
 }

@@ -30,9 +30,9 @@ protocol DiscographyListPresenterProtocol: class {
     var view: DiscographyListViewProtocol? { get set }
     var interactor: DiscographyListInteractorInputProtocol? { get set }
     var wireFrame: DiscographyListWireFrameProtocol? { get set }
+    var artist: ArtistModel? { get set }
     
     func viewDidLoad()
-    func retrieveDiscographyList(forArtistId artistId:String)
 }
 
 // MARK:  Interactor -> Presenter
@@ -48,7 +48,7 @@ protocol DiscographyListInteractorInputProtocol: class {
     var presenter: DiscographyListInteractorOutputProtocol? { get set }
     var remoteDataManager: DiscographyListRemoteDataManagerInputProtocol? { get set }
     
-    func retrieveDiscographyList(forArtistId artistId:String)
+    func retrieveDiscographyList(forArtistId artistId:Int)
 }
 
 // MARK:  Interactor -> Datamanager
@@ -60,7 +60,7 @@ protocol DiscographyListDataManagerInputProtocol: class {
 protocol DiscographyListRemoteDataManagerInputProtocol: class {
     var requestHandler: DiscographyListRemoteDataManagerOutputProtocol? { get set }
     
-    func retrieveDiscographyList(forArtistId artistId:String)
+    func retrieveDiscographyList(forArtistId artistId:Int)
 }
 
 // MARK:  RemoteDatamanager -> Interactor
