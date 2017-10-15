@@ -11,7 +11,7 @@ import UIKit
 protocol DiscographyListViewProtocol: class {
     var presenter: DiscographyListPresenterProtocol? { get set }
     
-    func showDiscographys(with Discographys: [DiscographyItemModel])
+    func showDiscography(with discography: [DiscographyItemModel])
     
     func showError()
     
@@ -22,8 +22,7 @@ protocol DiscographyListViewProtocol: class {
 
 // MARK: Presenter -> Wireframe
 protocol DiscographyListWireFrameProtocol: class {
-    static func createDiscographyListModule() -> UIViewController
-    
+    static func createDiscographyListModule(for artist:ArtistModel) -> UIViewController
 }
 
 // MARK: View -> Presenter

@@ -8,6 +8,26 @@
 
 import UIKit
 
-class DiscographyListInteractor: NSObject {
+class DiscographyListInteractor: DiscographyListInteractorInputProtocol {
 
+    var presenter: DiscographyListInteractorOutputProtocol?
+    var remoteDataManager: DiscographyListRemoteDataManagerInputProtocol?
+    
+    func retrieveDiscographyList(forArtistId artistId:String) {
+        self.remoteDataManager?.retrieveDiscographyList(forArtistId: artistId)
+    }
+    
+}
+
+
+extension DiscographyListInteractor: DiscographyListRemoteDataManagerOutputProtocol {
+    
+    func onDiscographyRetrieved(_ discography: [DiscographyItemModel]) {
+           presenter?.didRetrieveDiscography(discography)
+    }
+    
+    func onError() {
+        presenter?.onError()
+    }
+    
 }
