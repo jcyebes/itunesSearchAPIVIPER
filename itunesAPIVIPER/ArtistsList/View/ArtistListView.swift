@@ -21,6 +21,7 @@ class ArtistListView: UIViewController {
     
     @IBOutlet var searchTextField: UITextField!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     
     
@@ -85,11 +86,17 @@ extension ArtistListView: ArtistListViewProtocol {
     }
     
     func showLoading() {
-        
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+        }
+       
     }
     
     func hideLoading() {
-        
+        DispatchQueue.main.async {
+             self.activityIndicator.stopAnimating()
+        }
     }
     
 }

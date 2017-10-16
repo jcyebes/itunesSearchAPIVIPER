@@ -15,7 +15,6 @@ class ArtistListPresenter: ArtistListPresenterProtocol {
     var wireFrame: ArtistListWireFrameProtocol?
     
     func viewDidLoad() {
-        view?.showLoading()
         
     }
     
@@ -26,6 +25,7 @@ class ArtistListPresenter: ArtistListPresenterProtocol {
             return
         }
         
+        view?.showLoading()
         interactor?.retrieveArtistList(forSearchTerm: searchTerm)
     }
     
@@ -49,6 +49,7 @@ extension ArtistListPresenter: ArtistListInteractorOutputProtocol {
     }
     
     func didRetrieveDiscography(_ discography: [DiscographyItemModel]) {
+        view?.hideLoading()
         view?.updateArtist(with: discography)
     }
     

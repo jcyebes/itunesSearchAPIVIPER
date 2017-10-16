@@ -31,10 +31,9 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="540-Xe-uu5">
-                                        <rect key="frame" x="312" y="12.5" width="55" height="35"/>
+                                        <rect key="frame" x="312" y="13.5" width="55" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="ctB-9b-YU3"/>
-                                            <constraint firstAttribute="width" constant="55" id="lgJ-ct-GQU"/>
+                                            <constraint firstAttribute="width" constant="55" id="dgF-aU-pKM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Search"/>
@@ -136,6 +135,7 @@
                                                 <constraint firstItem="Il4-oy-uJy" firstAttribute="top" secondItem="m8z-gP-ksX" secondAttribute="topMargin" constant="8" id="RZb-fZ-R4K"/>
                                                 <constraint firstItem="v9f-QQ-c1B" firstAttribute="leading" secondItem="Ump-ll-HdB" secondAttribute="trailing" constant="8" id="UdD-w9-dXJ"/>
                                                 <constraint firstItem="v9f-QQ-c1B" firstAttribute="baseline" secondItem="Ump-ll-HdB" secondAttribute="baseline" id="hZr-iB-cer"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="v9f-QQ-c1B" secondAttribute="trailing" constant="20" symbolic="YES" id="vB6-cn-4Ed"/>
                                                 <constraint firstItem="Ump-ll-HdB" firstAttribute="top" secondItem="m8z-gP-ksX" secondAttribute="top" constant="8" id="yXj-gG-KLl"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -168,6 +168,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GJG-rD-EqB">
+                                <rect key="frame" x="177.5" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -176,13 +179,16 @@
                             <constraint firstItem="Zbv-pg-sub" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="9fS-4j-PH9"/>
                             <constraint firstItem="BPD-99-UMl" firstAttribute="top" secondItem="Zbv-pg-sub" secondAttribute="bottom" id="Ddl-VI-2sj"/>
                             <constraint firstItem="Zbv-pg-sub" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WhJ-at-B3J"/>
+                            <constraint firstItem="GJG-rD-EqB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bvJ-om-LLH"/>
                             <constraint firstItem="BPD-99-UMl" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="woU-Za-NB4"/>
+                            <constraint firstItem="GJG-rD-EqB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xrB-7V-ad7"/>
                             <constraint firstItem="BPD-99-UMl" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ye2-jm-gRr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="mmC-Ra-O15"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="GJG-rD-EqB" id="2QQ-xg-ame"/>
                         <outlet property="searchTextField" destination="Ibf-uc-ayN" id="nqh-bv-SjH"/>
                         <outlet property="tableView" destination="BPD-99-UMl" id="3Ps-uH-8AD"/>
                     </connections>
@@ -235,6 +241,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="UyB-w5-cWP" firstAttribute="leading" secondItem="eUz-M6-O2Y" secondAttribute="trailing" constant="8" id="5AA-rM-zwr"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GNA-M3-i1g" secondAttribute="trailing" constant="20" symbolic="YES" id="73N-Ii-V0v"/>
                                                 <constraint firstItem="GNA-M3-i1g" firstAttribute="leading" secondItem="eUz-M6-O2Y" secondAttribute="trailing" constant="8" id="SmM-nM-YCC"/>
                                                 <constraint firstItem="UyB-w5-cWP" firstAttribute="top" secondItem="r4d-Cf-9kC" secondAttribute="topMargin" constant="8" id="a0l-UN-p8I"/>
                                                 <constraint firstItem="GNA-M3-i1g" firstAttribute="top" secondItem="UyB-w5-cWP" secondAttribute="bottom" constant="8" id="cSD-2B-9uc"/>
@@ -252,17 +259,23 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="eIl-iN-z12">
+                                <rect key="frame" x="177.5" y="324" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pOe-4n-luw" firstAttribute="bottom" secondItem="G0b-z2-Bf8" secondAttribute="bottom" id="2oz-MH-wLt"/>
+                            <constraint firstItem="eIl-iN-z12" firstAttribute="centerY" secondItem="KzR-Pw-ppV" secondAttribute="centerY" id="Fy1-ux-zwL"/>
                             <constraint firstItem="pOe-4n-luw" firstAttribute="trailing" secondItem="G0b-z2-Bf8" secondAttribute="trailing" id="qE9-ct-V7w"/>
                             <constraint firstItem="pOe-4n-luw" firstAttribute="leading" secondItem="G0b-z2-Bf8" secondAttribute="leading" id="w3A-TU-PRM"/>
+                            <constraint firstItem="eIl-iN-z12" firstAttribute="centerX" secondItem="KzR-Pw-ppV" secondAttribute="centerX" id="w82-vv-Vme"/>
                             <constraint firstItem="pOe-4n-luw" firstAttribute="top" secondItem="G0b-z2-Bf8" secondAttribute="top" constant="21" id="xEE-ph-uCS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="G0b-z2-Bf8"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="eIl-iN-z12" id="oWz-sv-rfU"/>
                         <outlet property="tableView" destination="pOe-4n-luw" id="my0-Xg-a7v"/>
                     </connections>
                 </viewController>

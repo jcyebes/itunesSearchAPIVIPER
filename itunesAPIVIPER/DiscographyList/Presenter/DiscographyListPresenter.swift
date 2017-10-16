@@ -30,10 +30,12 @@ class DiscographyListPresenter: DiscographyListPresenterProtocol {
 extension DiscographyListPresenter: DiscographyListInteractorOutputProtocol {
     
     func didRetrieveDiscography(_ discography: [DiscographyItemModel]) {
+        view?.hideLoading()
         view?.showDiscography(with: discography)
     }
     
     func onError() {
+        view?.hideLoading()
         view?.showError()
     }
 }
