@@ -34,7 +34,11 @@ extension DiscographyListPresenter: DiscographyListInteractorOutputProtocol {
     
     func didRetrieveDiscography(_ discography: [DiscographyItemModel]) {
         view?.hideLoading()
-        view?.showDiscography(with: discography)
+        
+        // Order discography by releaseDate descending
+        let orderedDiscography =  discography.sorted(by: { $0.releaseDate?.compare($1.releaseDate!) == ComparisonResult.orderedDescending })
+        
+        view?.showDiscography(with: orderedDiscography)
     }
     
     func onError() {
