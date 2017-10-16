@@ -10,6 +10,8 @@ import UIKit
 
 protocol DiscographyListViewProtocol: class {
     var presenter: DiscographyListPresenterProtocol? { get set }
+   
+    func setArtistName(artistName: String)
     
     func showDiscography(with discography: [DiscographyItemModel])
     

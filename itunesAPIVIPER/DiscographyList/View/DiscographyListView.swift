@@ -13,6 +13,8 @@ class DiscographyListView: UIViewController {
     var presenter: DiscographyListPresenterProtocol?
     var discography: [DiscographyItemModel] = []
     
+    private var artistName: String = ""
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
@@ -33,6 +35,10 @@ extension DiscographyListView: DiscographyListViewProtocol {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    func setArtistName(artistName: String) {
+        self.artistName = artistName
     }
     
     func showError() {
@@ -56,6 +62,25 @@ extension DiscographyListView: DiscographyListViewProtocol {
 // MARK: TableView delegate
 extension DiscographyListView: UITableViewDataSource, UITableViewDelegate {
     
+    // Section Header
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // Use a cell view as header
+        let artistHeader = tableView.dequeueReusableCell(withIdentifier: "DiscographyHeaderView") as! DiscographyArtistHeaderCell
+        artistHeader.set(artistData: self.artistName)
+        
+        return artistHeader
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return 44.0
+    }
+    
+    // Album cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscographyCell", for: indexPath) as! DiscographyTableViewCell

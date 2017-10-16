@@ -20,6 +20,9 @@ class DiscographyListPresenter: DiscographyListPresenterProtocol {
         view?.showLoading()
         
         if let artistToLoad = self.artist {
+            
+             view?.setArtistName(artistName: artistToLoad.artistName)
+            
              print ("Trying to show discography for artist \(artistToLoad.artistName)")
              interactor?.retrieveDiscographyList(forArtistId: artistToLoad.artistId)
         }
