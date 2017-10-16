@@ -37,6 +37,7 @@ class ArtistListView: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        searchTextField.delegate = self
         searchTextField.addTarget(self, action: #selector(searchArtist), for: .editingDidEndOnExit)
 
     }
@@ -47,6 +48,15 @@ class ArtistListView: UIViewController {
         if let searchText = self.searchTextField.text {
             presenter?.retrieveArtistList(forSearchTerm: searchText)
         }
+    }
+    
+}
+
+extension ArtistListView: UITextFieldDelegate {
+    
+    /// Empty search field on focus
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.searchTextField.text = ""
     }
     
 }

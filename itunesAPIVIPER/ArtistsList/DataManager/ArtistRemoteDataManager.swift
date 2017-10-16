@@ -13,7 +13,9 @@ class ArtistRemoteDataManager: ArtistListRemoteDataManagerInputProtocol {
     var requestHandler: ArtistListRemoteDataManagerOutputProtocol?
 
     func retrieveArtistList(forSearchTerm searchTerm:String) {
-        let url = URL(string: self.getArtistQuery(term: searchTerm));
+        
+        let escapedSearchTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        let url = URL(string: self.getArtistQuery(term: escapedSearchTerm!));
         
         let downloadTask = URLSession.shared.dataTask(with: url!) {(data, response, error) in
             

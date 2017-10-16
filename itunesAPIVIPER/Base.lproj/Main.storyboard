@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Artist List View-->
+        <!--iTunes api VIPER-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ArtistListView" customModule="itunesAPIVIPER" customModuleProvider="target" sceneMemberID="viewController">
@@ -186,7 +186,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="mmC-Ra-O15"/>
+                    <navigationItem key="navigationItem" title="iTunes api VIPER" id="mmC-Ra-O15"/>
                     <connections>
                         <outlet property="activityIndicator" destination="GJG-rD-EqB" id="2QQ-xg-ame"/>
                         <outlet property="searchTextField" destination="Ibf-uc-ayN" id="nqh-bv-SjH"/>
