@@ -8,8 +8,14 @@
 
 import UIKit
 
+struct ArtistViewConstants {
+    static let artistHeaderHeight:CGFloat = 60.0
+    static let artistDiscographyCellHeight:CGFloat = 120.0
+    static let artistFooterHeight:CGFloat = 44.0
+}
+
 class ArtistListView: UIViewController {
-    
+
     var presenter: ArtistListPresenterProtocol?
     var artistList: [ArtistModel] = []
     
@@ -19,9 +25,8 @@ class ArtistListView: UIViewController {
     
     
     @IBAction func searchArtistAction(_ sender: Any) {
-        if let searchText = self.searchTextField.text {
-             presenter?.retrieveArtistList(forSearchTerm: searchText)
-        }
+        
+        self.searchArtist()
     }
     
     override func viewDidLoad() {
@@ -30,8 +35,19 @@ class ArtistListView: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        searchTextField.addTarget(self, action: #selector(searchArtist), for: .editingDidEndOnExit)
 
     }
+    
+    @objc func searchArtist(){
+        searchTextField.resignFirstResponder()
+        
+        if let searchText = self.searchTextField.text {
+            presenter?.retrieveArtistList(forSearchTerm: searchText)
+        }
+    }
+    
 }
 
 
@@ -59,7 +75,13 @@ extension ArtistListView: ArtistListViewProtocol {
     }
     
     func showError() {
+        let alertController = UIAlertController(title: "Error", message: "There are no results for your search", preferredStyle: .alert)
         
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            // ...
+        }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true)
     }
     
     func showLoading() {
@@ -92,15 +114,35 @@ extension ArtistListView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
-        return 60.0
+        return ArtistViewConstants.artistHeaderHeight
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        // Create a dummy View
-        let vw = UIView()
-        vw.backgroundColor = UIColor.green
         
-        return vw
+        // Use a cell view as header
+        let artist = self.artistList[section]
+        if artist.discography != nil {
+            let  artistFooter = tableView.dequeueReusableCell(withIdentifier: "ArtistFooterView")
+            
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleFooterTap))
+            artistFooter!.addGestureRecognizer(tapRecognizer)
+            
+            return artistFooter
+        } else {
+            return nil
+        }
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let artist = self.artistList[section]
+        if artist.discography != nil {
+             return ArtistViewConstants.artistFooterHeight
+        } else {
+            return 0
+        }
+       
     }
     
     // Discography cells
@@ -117,7 +159,7 @@ extension ArtistListView: UITableViewDataSource, UITableViewDelegate {
     
     // Discography cells
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120.0
+        return ArtistViewConstants.artistDiscographyCellHeight
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -130,11 +172,19 @@ extension ArtistListView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let artist = self.artistList[indexPath.row]
+        let artist = self.artistList[indexPath.section]
         presenter?.showArtistDiscography(forArtist: artist)
     }
     
-    
+    // Private: handle tap on footer
+    @objc func handleFooterTap(sender: UITapGestureRecognizer) {
+        var tapLocation = sender.location(in: self.tableView)
+        tapLocation.y -= ArtistViewConstants.artistFooterHeight // A little trick
+        if let indexPath = self.tableView.indexPathForRow(at: tapLocation) {
+            let artist = self.artistList[indexPath.section]
+            presenter?.showArtistDiscography(forArtist: artist)
+        }
+    }
     
 }
 

@@ -20,6 +20,12 @@ class ArtistListPresenter: ArtistListPresenterProtocol {
     }
     
     func retrieveArtistList(forSearchTerm searchTerm:String) {
+        
+        if searchTerm.isEmpty {
+            view?.showError()
+            return
+        }
+        
         interactor?.retrieveArtistList(forSearchTerm: searchTerm)
     }
     
@@ -33,7 +39,13 @@ extension ArtistListPresenter: ArtistListInteractorOutputProtocol {
     
     func didRetrieveArtists(_ artists: [ArtistModel]) {
         view?.hideLoading()
-        view?.showArtists(with: artists)
+        
+        if (artists.count > 0) {
+            view?.showArtists(with: artists)
+        } else {
+            view?.showError()
+        }
+        
     }
     
     func didRetrieveDiscography(_ discography: [DiscographyItemModel]) {
